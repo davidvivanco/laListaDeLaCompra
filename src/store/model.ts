@@ -1,5 +1,6 @@
 export interface Store {
-    items: Item[]
+    loading: boolean;
+    items: Item[];
 }
 
 
