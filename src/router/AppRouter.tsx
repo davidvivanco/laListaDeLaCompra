@@ -4,23 +4,27 @@ import { IonReactRouter } from '@ionic/react-router';
 
 import HeaderLoggedRoutes from './routes/HeaderLoggedRoutes';
 
+import Explore from '../pages/Explore/Explore';
+import HeaderLogged from '../core/components/HeaderLogged';
+
 
 const AppRouter: React.FC = () => {
     return (
-            <IonReactRouter>
-                <HeaderLoggedRoutes></HeaderLoggedRoutes>
-                {/* <IonRouterOutlet>
-                    <Route exact path="/home">
-                        <Home />
-                    </Route>
-                    <Route exact path="/add-item">
-                        <AddItem />
-                    </Route>
-                    <Route exact path="/">
-                        <Redirect to="/home" />
-                    </Route>
-                </IonRouterOutlet> */}
-            </IonReactRouter>
+
+        <IonReactRouter>
+            <IonRouterOutlet>
+                <Route exact path="/explore2">
+                    <Explore />
+                </Route>
+                <Route path="/tabs">
+                    <HeaderLoggedRoutes />
+                </Route>
+                <Route exact path="/">
+                    <Redirect to="/tabs" />
+                </Route>
+            </IonRouterOutlet>
+        </IonReactRouter>
+
     )
 }
 

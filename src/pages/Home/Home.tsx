@@ -8,7 +8,7 @@ import ListItems from './components/ListItems';
 
 const Home: React.FC = () => {
   const { store, dispatchStore } = useContext(StoreContext);
-  
+
   useEffect(() => {
     //llamada a firebase
     setTimeout(() => {
@@ -24,7 +24,7 @@ const Home: React.FC = () => {
 
   return (
     <IonPage>
-      <IonContent className='content-padding-header' fullscreen>
+      <IonContent class='ion-padding-top' fullscreen>
         {
           store.loading
             ? <Spinner></Spinner>
@@ -32,7 +32,6 @@ const Home: React.FC = () => {
               ? <ListItems></ListItems>
               : <ListEmpty></ListEmpty>
         }
-
       </IonContent>
     </IonPage>
   );

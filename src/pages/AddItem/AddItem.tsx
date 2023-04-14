@@ -49,7 +49,7 @@ const AddItem: React.FC = () => {
 
     return (
         <IonPage>
-            <IonContent className='content-padding-header'>
+            <IonContent>
                 <IonToast
                     position='top'
                     isOpen={isOpen}
