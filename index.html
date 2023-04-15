@@ -28,6 +28,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Gantari:wght@400;500;700&display=swap"
     rel="stylesheet">
 
+  <!-- Firebase config -->
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDGTmJQOpz7e1FvLFlrTswI4uQbeiNCWFk",
+      authDomain: "the-shopping-list-62c9f.firebaseapp.com",
+      projectId: "the-shopping-list-62c9f",
+      storageBucket: "the-shopping-list-62c9f.appspot.com",
+      messagingSenderId: "520637604288",
+      appId: "1:520637604288:web:df4097f66fa8b620bae825",
+      measurementId: "G-BG3RW7TG9W"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+
 </head>
 
 <body>

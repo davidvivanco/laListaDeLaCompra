@@ -1,30 +1,33 @@
 import { Redirect, Route } from 'react-router-dom';
-import { IonRouterOutlet } from '@ionic/react';
+import { IonRouterOutlet, useIonRouter } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-
-import HeaderLoggedRoutes from './routes/HeaderLoggedRoutes';
-
 import Explore from '../pages/Explore/Explore';
-import HeaderLogged from '../core/components/HeaderLogged';
+import TabsRoutes from './routes/TabsRoutes';
+import Login from '../pages/Auth/Login/Login';
+import { useEffect } from 'react';
 
 
 const AppRouter: React.FC = () => {
-    return (
 
+   
+
+    return (
         <IonReactRouter>
             <IonRouterOutlet>
-                <Route exact path="/explore2">
+                <Route exact path="/login">
+                    <Login />
+                </Route>
+                <Route exact path="/explore">
                     <Explore />
                 </Route>
                 <Route path="/tabs">
-                    <HeaderLoggedRoutes />
+                    <TabsRoutes />
                 </Route>
                 <Route exact path="/">
                     <Redirect to="/tabs" />
                 </Route>
             </IonRouterOutlet>
         </IonReactRouter>
-
     )
 }
 

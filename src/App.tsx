@@ -27,7 +27,6 @@ import './theme/variables.scss';
 setupIonicReact();
 
 const App: React.FC = () => {
-  
   return (
     <IonApp>
       <StoreProvider>

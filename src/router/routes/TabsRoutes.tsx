@@ -1,35 +1,33 @@
 import { Redirect, Route } from 'react-router-dom';
-import { IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from '@ionic/react';
+import { IonRouterOutlet, IonTabBar, IonTabButton, IonTabs, useIonRouter } from '@ionic/react';
 
-import Home from '../../pages/Home/Home';
-import AddItem from '../../pages/AddItem/AddItem';
-import HeaderLogged from '../../core/components/HeaderLogged';
+import Home from '../../pages/Tabs/Home/Home';
+import AddItem from '../../pages/Tabs/AddItem/AddItem';
 import ChecklistIcon from '@mui/icons-material/Checklist';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ExploreIcon from '@mui/icons-material/Explore';
-import { useState } from 'react';
-import Explore from '../../pages/Explore/Explore';
+import { useEffect, useState } from 'react';
+import { noDirectAccessHandler } from '../../core/utils/nav';
 
-const HeaderLoggedRoutes: React.FC = () => {
+const TabsRoutes: React.FC = () => {
     const [tabActive, setTabActive] = useState<{
         home?: boolean,
         addItem?: boolean,
         explore?: boolean
     }>({ home: true });
 
+    const router = useIonRouter();
+
+    useEffect(() => noDirectAccessHandler(router), [])
+
     return (
         <>
-
             <IonTabs>
                 <IonRouterOutlet>
                     <Route exact path="/tabs/home">
                         <Home />
                     </Route>
                     <Route exact path="/tabs/add-item">
-                        <AddItem />
-                    </Route>
-                    <Route exact path="/explore">
-                        {/* <Explore /> */}
                         <AddItem />
                     </Route>
                     <Route exact path="/tabs">
@@ -49,7 +47,7 @@ const HeaderLoggedRoutes: React.FC = () => {
                         <AddCircleIcon color={tabActive.addItem ? 'primary' : 'action'} fontSize='large'></AddCircleIcon>
                     </IonTabButton>
 
-                    <IonTabButton onClick={() => setTabActive({ explore: true })} tab="explore" href="/explore2">
+                    <IonTabButton onClick={() => setTabActive({ explore: true })} tab="explore" href="/explore">
                         <ExploreIcon color={tabActive.explore ? 'primary' : 'action'} fontSize='large'></ExploreIcon>
                     </IonTabButton>
                 </IonTabBar>
@@ -59,5 +57,5 @@ const HeaderLoggedRoutes: React.FC = () => {
     )
 }
 
-export default HeaderLoggedRoutes;
+export default TabsRoutes;
 

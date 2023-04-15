@@ -4,7 +4,9 @@ import './AddItem.scss';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { add } from 'ionicons/icons';
 import { Divider, InputAdornment, TextField } from '@mui/material';
-import { StoreContext } from '../../store/StoreProvider';
+import { StoreContext } from '../../../store/StoreProvider';
+import { Item } from '../../../store/model';
+import { itemBuilder } from '../../../core/utils/item';
 
 let recommendations = [
     'Huevos', 'Leche', 'Fairy',
@@ -25,13 +27,14 @@ const AddItem: React.FC = () => {
     const { dispatchStore } = useContext(StoreContext);
     const [isOpen, setIsOpen] = useState(false);
     const [message, setMessage] = useState('false');
-    const [name, setInputName] = useState('')
+    const [name, setInputName] = useState('');
 
     const handleChangeEvent = (value: string) => setInputName(value)
 
     const addRecomendation = (value: string) => {
         const index = recommendations.findIndex(ele => ele.toLowerCase() === value?.toLowerCase());
-        dispatchStore({ type: 'ADD ITEM', payload: value })
+        const item: Item = itemBuilder(value);
+        dispatchStore({ type: 'ADD ITEM', payload: item })
         const message = `${recommendations[index]} ha sido añadido a la lista`
         setMessage(message);
         setIsOpen(true);
@@ -42,8 +45,9 @@ const AddItem: React.FC = () => {
         if (!name) return;
         const message = `${name} ha sido añadido a la lista`;
         setMessage(message);
+        const item: Item = itemBuilder(name);
         setIsOpen(true);
-        dispatchStore({ type: 'ADD ITEM', payload: name })
+        dispatchStore({ type: 'ADD ITEM', payload: item })
         setInputName('');
     }
 
@@ -52,6 +56,7 @@ const AddItem: React.FC = () => {
             <IonContent>
                 <IonToast
                     position='top'
+                    color="primary"
                     isOpen={isOpen}
                     message={message}
                     onDidDismiss={() => setIsOpen(false)}
@@ -59,7 +64,7 @@ const AddItem: React.FC = () => {
                 ></IonToast>
 
                 <div className='content-container ion-padding'>
-                    <div className='mt-m mb-s'>Recomendaciones</div>
+                    <div className='mt-m mb-s'>Recomendaciones más usadas</div>
                     <Divider />
                     <div className='chip-container flex fd-row f-wrap w-100 mt-s'>
                         {recommendations

@@ -1,6 +1,6 @@
 ion-toolbar {
     --background: white;
-    height: 60px;
+    // height: 60px;
 }
 
 .MuiAlert-standardInfo {
@@ -10,4 +10,8 @@ ion-toolbar {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+ion-avatar{
+    transform: scale(.85);
 }

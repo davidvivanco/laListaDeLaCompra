@@ -1,26 +1,30 @@
 import { IonAvatar, IonBackButton, IonButtons, IonHeader, IonTitle, IonToolbar } from '@ionic/react';
-import React from 'react';
+import React, { useContext } from 'react';
 import './HeaderLogged.scss';
+import { StoreContext } from '../../store/StoreProvider';
 
 const HeaderLogged: React.FC = () => {
+    const { store } = useContext(StoreContext);
 
-   
+
     return (
         <IonHeader
-        // className="ion-no-border"
+            className="ion-no-border"
         >
             <IonToolbar>
-                <IonButtons>
+                {/* <IonButtons>
                     <IonBackButton className='ml-xs' text={''} defaultHref='/' ></IonBackButton>
-                </IonButtons>
-                <IonTitle>Header Logged</IonTitle>
-                <IonAvatar slot='end' className='mr-s mt-2'>
-                    <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-                </IonAvatar>
+                </IonButtons> */}
+                {store?.user &&
+                    <>
+                        <IonTitle>{store?.user?.username}</IonTitle>
+                        <IonAvatar slot='end' className='mr-s'>
+                            {store?.user?.photoUrl && <img alt="Image profile" src={store?.user?.photoUrl} />}
+                        </IonAvatar>
+                    </>
+                }
+
             </IonToolbar>
-
-
-
         </IonHeader>
     );
 };
