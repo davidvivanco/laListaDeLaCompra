@@ -1,23 +1,23 @@
-import { IonContent, IonModal, IonPage, useIonRouter } from '@ionic/react';
-import React, { useContext, useEffect, useRef } from 'react';
+import { IonContent, IonModal } from '@ionic/react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Button, TextField } from '@mui/material';
 import { AuthContext } from '../../../context/auth/AuthProvider';
 import { LoadingContext } from '../../../context/loading/LoadingProvider';
-import './LoginModal.scss';
+import './SignInModal.scss';
 import { useForm } from 'react-hook-form';
 
-const LoginModal: React.FC<{
+const SignInModal: React.FC<{
   isOpen: boolean;
   setLoginIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setSignInIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ isOpen, setLoginIsOpen, setSignInIsOpen }) => {
+}> = ({ isOpen, setSignInIsOpen, setLoginIsOpen }) => {
   const modal = useRef<HTMLIonModalElement>(null);
   const { setLoading } = useContext(LoadingContext);
-  const { login } = useContext(AuthContext);
-  const onInputChange = () => {
-    console.log(control.getFieldState('email'));
-  };
+  const { signIn } = useContext(AuthContext);
 
+  const onInputChange = () => {
+    console.log(getValues());
+  };
   const {
     register,
     handleSubmit,
@@ -29,21 +29,19 @@ const LoginModal: React.FC<{
   });
 
   const onSubmit = async (data: any) => {
-    console.log('submit');
-    setSignInIsOpen(false);
-    setLoginIsOpen(false);
+    const { password, username, email, confirmPassword } = getValues();
     setLoading(true);
-    login('', '', setLoading);
+    signIn(email, password, setLoading);
   };
 
   return (
     <IonModal
       isOpen={isOpen}
-      className="login-modal"
+      className="signin-modal"
       ref={modal}
-      trigger="open-modal"
-      initialBreakpoint={0.47}
-      breakpoints={[0.47]}
+      trigger="open--signin-modal"
+      initialBreakpoint={0.74}
+      breakpoints={[0.74]}
     >
       <IonContent className="ion-padding">
         <form className="ion-padding" onSubmit={handleSubmit(onSubmit)}>
@@ -51,6 +49,30 @@ const LoginModal: React.FC<{
             onKeyDown={(event) => {
               onInputChange();
             }}
+            sx={{
+              '& label': {
+                '&.Mui-focused': {
+                  color: '#d35c26',
+                },
+              },
+            }}
+            id="username"
+            {...register('username', { required: true })}
+            type="text"
+            margin="dense"
+            fullWidth
+            InputProps={{
+              sx: {
+                '&:focus-within fieldset, &:focus-visible fieldset': {
+                  border: '1px solid #d35c26!important',
+                },
+              },
+            }}
+            label="Username"
+            variant="outlined"
+          />
+
+          <TextField
             {...register('email', {
               required: true,
               pattern: {
@@ -77,7 +99,6 @@ const LoginModal: React.FC<{
             label="Email"
             variant="outlined"
           />
-
           {/* {errors.email?.type === 'pattern' &&
           control.getFieldState('email')?.isTouched && (
             <FormHelperText className="error-txt">
@@ -89,10 +110,15 @@ const LoginModal: React.FC<{
             Campo requerido
           </FormHelperText>
         )} */}
+
           <TextField
             id="email"
             {...register('password', { required: true })}
             type="password"
+            margin="dense"
+            fullWidth
+            label="Contraseña"
+            variant="outlined"
             sx={{
               '& label': {
                 '&.Mui-focused': {
@@ -107,28 +133,50 @@ const LoginModal: React.FC<{
                 },
               },
             }}
+          />
+
+          <TextField
+            id="confirm-password"
+            {...register('confirmPassword', { required: true })}
+            type="password"
             margin="dense"
             fullWidth
-            label="Outlined"
+            sx={{
+              '& label': {
+                '&.Mui-focused': {
+                  color: '#d35c26',
+                },
+              },
+            }}
+            label="Repite contraseña"
             variant="outlined"
+            InputProps={{
+              sx: {
+                '&:focus-within fieldset, &:focus-visible fieldset': {
+                  border: '1px solid #d35c26!important',
+                },
+              },
+            }}
           />
-          {/* {errors.password?.type === 'required' && (
-          <FormHelperText className="error-txt">
-            Campo requerido
-          </FormHelperText>
-        )} */}
           <div className="mt-m flex jc-c fd-col">
-            <Button className="login-btn" size="large" type="submit" fullWidth>
-              Login
+            <Button
+              disabled={!isValid}
+              className="signin-btn"
+              style={{ opacity: !isValid ? '60%' : '100%' }}
+              size="large"
+              type="submit"
+              fullWidth
+            >
+              Sign In
             </Button>
             <div
               onClick={() => {
-                setLoginIsOpen(false);
-                setSignInIsOpen(true);
+                setSignInIsOpen(false);
+                setLoginIsOpen(true);
               }}
-              className="signin-link flex jc-c ai-c"
+              className="login-link flex jc-c ai-c"
             >
-              No tengo cuenta
+              Ya tengo cuenta
             </div>
           </div>
         </form>
@@ -137,4 +185,4 @@ const LoginModal: React.FC<{
   );
 };
 
-export default LoginModal;
+export default SignInModal;

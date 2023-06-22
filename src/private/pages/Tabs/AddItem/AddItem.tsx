@@ -58,7 +58,7 @@ const AddItem: React.FC = () => {
   return (
     <IonPage>
       {!isLoading && <HeaderLogged></HeaderLogged>}
-      <IonContent>
+      <IonContent className='content'>
         <IonToast
           position="top"
           color="primary"

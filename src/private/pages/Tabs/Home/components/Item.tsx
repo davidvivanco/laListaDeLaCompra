@@ -23,7 +23,7 @@ const ItemList: React.FC<{ item: Item, slidingDisabled?: boolean }> = ({ item, s
     }
 
     return (
-        <IonItemSliding disabled={slidingDisabled}>
+        <IonItemSliding disabled={true}>
             <IonItem lines='none'>
                 <IonLabel>{item.name}</IonLabel>
                 <IonCheckbox mode='ios' checked={checked} onIonChange={(e) => onIonChangeHandler(e.detail.checked)} />

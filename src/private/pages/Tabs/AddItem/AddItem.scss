@@ -9,6 +9,9 @@
 .chip-container {
   .chip {
     width: 33%;
+    ion-chip {
+      margin: 1px;
+    }
     ion-label {
       text-overflow: ellipsis;
       overflow: hidden;
@@ -29,6 +32,10 @@ ion-segment {
   }
 }
 
-ion-content {
+.content {
   --background: var(--ion-color-medium);
+}
+
+ion-tab-bar {
+  border: none;
 }

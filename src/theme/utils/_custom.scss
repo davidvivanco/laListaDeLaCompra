@@ -20,6 +20,10 @@ ion-item {
   margin-top: 8px;
 }
 
+ion-modal::part(backdrop) {
+  background: var(--ion-color-secondary);
+}
+
 .btn-primary {
   margin-top: 8px !important;
   border-radius: 20px !important;

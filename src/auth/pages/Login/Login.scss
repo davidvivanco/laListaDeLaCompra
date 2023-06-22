@@ -44,10 +44,6 @@
   }
 }
 
-ion-modal::part(backdrop) {
-  background: var(--ion-color-secondary);
-}
-
 ion-modal {
   .login-btn,
   .signin-btn {

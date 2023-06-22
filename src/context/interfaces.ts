@@ -4,6 +4,11 @@ import { ShoppinList } from "../shared/models/interfaces";
 export interface AuthContextValue {
     logged: boolean,
     user: any
+    signIn: (
+        email: string,
+        password: string,
+        setLoading: React.Dispatch<React.SetStateAction<boolean>>
+    ) => Promise<void>,
     login: (
         email: string,
         password: string,

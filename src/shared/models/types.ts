@@ -2,6 +2,7 @@
 export const authTypes = {
     login: '[Auth] Login',
     logout: '[Auth] Logout',
+    signIn: '[Auth] SignIn',
 }
 
 export const shoppingListTypes = {
