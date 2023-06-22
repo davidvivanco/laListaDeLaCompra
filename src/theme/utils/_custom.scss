@@ -1,8 +1,41 @@
 .content-padding-header {
-    --padding-top: 60px
+  --padding-top: 60px;
 }
 
 ion-tab-bar,
 ion-tab-button {
-    background-color: white;
+  background-color: white;
+}
+
+ion-item ion-label {
+  overflow: visible !important;
+}
+
+ion-chip {
+  background-color: white;
+}
+
+ion-item {
+  border-radius: 5px;
+  margin-top: 8px;
+}
+
+.btn-primary {
+  margin-top: 8px !important;
+  border-radius: 20px !important;
+  background: var(--ion-color-primary) !important;
+  color: white !important;
+  min-width: 163px !important;
+}
+
+.delete-btn {
+  background: var(--ion-color-secondary) !important;
+  color: white !important;
+  margin-top: 8px !important;
+  border-radius: 20px !important;
+  min-width: 163px !important;
+  svg {
+    color: white;
+    margin-left: 4px;
+  }
 }

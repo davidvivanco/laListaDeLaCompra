@@ -104,6 +104,10 @@
     margin-top: 18px;
 }
 
+.mt-20 {
+    margin-top: 20px;
+}
+
 
 .mt-xs {
     margin-top: 6px;
@@ -222,4 +226,19 @@
 
 .fs-m {
     font-size: 20px;
+}
+
+// colors
+
+.error-txt{
+    color: var(--ion-color-secondary)!important;
+}
+
+.background-medium{
+    background: var(--ion-color-medium);
+    --background: var(--ion-color-medium);
+}
+
+.bold{
+    font-weight: bold;
 }

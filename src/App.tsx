@@ -1,8 +1,6 @@
 import { IonApp, setupIonicReact } from '@ionic/react';
 
 import AppRouter from './router/AppRouter';
-import { useContext, useEffect } from 'react';
-import StoreProvider, { StoreContext } from './store/StoreProvider';
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -23,15 +21,19 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.scss';
+import AuthProvider from './context/auth/AuthProvider';
+import LoadingProvider from './context/loading/LoadingProvider';
 
 setupIonicReact();
 
 const App: React.FC = () => {
   return (
     <IonApp>
-      <StoreProvider>
-        <AppRouter></AppRouter>
-      </StoreProvider>
+      <AuthProvider>
+        <LoadingProvider>
+          <AppRouter></AppRouter>
+        </LoadingProvider>
+      </AuthProvider>
     </IonApp>
   )
 };

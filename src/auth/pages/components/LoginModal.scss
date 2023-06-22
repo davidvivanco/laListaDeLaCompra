@@ -1,0 +1,23 @@
+ion-modal {
+    .login-btn,
+    .signin-btn {
+      border-radius: 20px;
+      background: var(--ion-color-primary);
+      color: white;
+      min-width: 80%;
+    }
+  
+    .signin-link,
+    .login-link {
+      color: var(--ion-color-secondary);
+      font-size: 12px;
+      margin-top: 8px;
+    }
+  
+    .signin-link {
+      color: var(--ion-color-secondary);
+    }
+    .Mui-focused {
+    }
+  }
+  

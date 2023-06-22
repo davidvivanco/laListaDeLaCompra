@@ -1,0 +1,21 @@
+ion-toolbar {
+  --background: var(--ion-color-medium);
+}
+
+.MuiAlert-standardInfo {
+  position: absolute;
+  z-index: 1000;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ion-avatar {
+  transform: scale(0.85);
+}
+
+.username {
+  padding: 16px;
+  font-size: 12px;
+}

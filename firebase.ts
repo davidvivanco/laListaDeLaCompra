@@ -1,10 +1,7 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, UserCredential } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, query, where, doc, onSnapshot } from "firebase/firestore";
-import { DispatchStoreData, Store } from "./src/store/model";
-import { updateStore } from "./src/core/utils/store";
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { initializeApp } from 'firebase/app';
 
-const app = initializeApp({
+const firebaseApp = initializeApp({
   apiKey: "AIzaSyDGTmJQOpz7e1FvLFlrTswI4uQbeiNCWFk",
   authDomain: "the-shopping-list-62c9f.firebaseapp.com",
   projectId: "the-shopping-list-62c9f",
@@ -14,16 +11,7 @@ const app = initializeApp({
   measurementId: "G-BG3RW7TG9W"
 });
 
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-const loginWithEmailAndPassword = async (): Promise<UserCredential> => {
-  try {
-    return await signInWithEmailAndPassword(auth, 'demo@gmail.com', '12345678910');
-  } catch (error) {
-    return error as any;
-  }
-}
+const auth = getAuth(firebaseApp);
 
 const addUser = (email: string, password: string) => {
   createUserWithEmailAndPassword(auth, email, password)
@@ -40,18 +28,6 @@ const addUser = (email: string, password: string) => {
 }
 
 
-const getUserByUid = async (
-  uid: string,
-  dispatchStore: React.Dispatch<DispatchStoreData>,
-  store: Partial<Store>
-) => {
-  onSnapshot(doc(db, 'users', 'TafLHskgNKha8fSAWjco7rkLnH03'), (doc) => {
-    const user = doc.data();
-    updateStore(dispatchStore, { ...store, user })
-    // dispatchStore({ type: 'UPDATE STORE', payload: { ...store, user } })
-    console.log("Current user: ", doc.data());
-  });
-}
 
 
-export { addUser, auth, loginWithEmailAndPassword, getUserByUid }
+export { addUser, auth, firebaseApp }
